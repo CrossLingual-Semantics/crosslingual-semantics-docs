@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🌐 SWOW Enhancement Pipeline &mdash; Collaboration Documentation  documentation</title>
+  <title>🌐 SWOW Enhancement &mdash; Collaboration Documentation  documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/custom.css?v=f5fd91e7" />
@@ -48,7 +48,19 @@
 <li class="toctree-l2"><a class="reference internal" href="installation.html#environment-setup">Environment setup</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">📌 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">🌍 Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#what-has-been-done-so-far">✅ What Has Been Done So Far</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#what-we-are-doing-next">🚧 What We Are Doing Next</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#technologies-tools">🛠️ Technologies &amp; Tools</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="aggregator.html">Aggregator Module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="aggregator.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aggregator.html#functions">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aggregator.html#implementation-details">Implementation Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aggregator.html#notes">Notes</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="enhancer.html">Enhancer Module — Detailed Walk-through</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="enhancer.html#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="enhancer.html#tf-idf-synset-ranking">TF-IDF Synset Ranking</a></li>
@@ -58,11 +70,19 @@
 <li class="toctree-l2"><a class="reference internal" href="enhancer.html#babelnet-synset-background">BabelNet Synset Background</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="annotations.html">Annotation Module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="annotations.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="annotations.html#key-functions">Key Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="annotations.html#example">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="annotations.html#notes">Notes</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Usage Guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="usage.html#command-line-invocation">Command-Line Invocation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="usage.html#options">Options</a></li>
-<li class="toctree-l2"><a class="reference internal" href="usage.html#cache-behavior">Cache Behavior</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#sample-yaml-file">Sample YAML file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#general-command-line-options">General Command-Line Options</a></li>
 <li class="toctree-l2"><a class="reference internal" href="usage.html#examples">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#alternative-random-sampling">Alternative: Random Sampling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#notes">Notes</a></li>
 </ul>
 </li>
 </ul>
@@ -81,7 +101,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">🌐 SWOW Enhancement Pipeline</li>
+      <li class="breadcrumb-item active">🌐 SWOW Enhancement</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/enhancing_swow.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -91,8 +111,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="swow-enhancement-pipeline">
-<h1>🌐 SWOW Enhancement Pipeline<a class="headerlink" href="#swow-enhancement-pipeline" title="Link to this heading"></a></h1>
+  <section id="swow-enhancement">
+<h1>🌐 SWOW Enhancement<a class="headerlink" href="#swow-enhancement" title="Link to this heading"></a></h1>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
 <p>The <strong>Small World of Words (SWOW) dataset</strong> captures <strong>word associations</strong> through a <strong>cue-response paradigm</strong>. Each cue word elicits <strong>three responses</strong> (R1, R2, R3) from participants, revealing semantic relationships between words.</p>
