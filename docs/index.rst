@@ -17,5 +17,6 @@ Welcome to the **SWOW Enhancement Pipeline** documentation. This guide will walk
    aggregator
    enhancer
    annotations
+   app
    usage
 
