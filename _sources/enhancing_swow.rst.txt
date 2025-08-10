@@ -1,5 +1,5 @@
 ==============================
-🌐 SWOW Enhancement Pipeline
+🌐 SWOW Enhancement
 ==============================
 
 Introduction
