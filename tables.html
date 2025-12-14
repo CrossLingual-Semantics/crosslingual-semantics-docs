@@ -3,9 +3,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Index &mdash; Collaboration Documentation  documentation</title>
+  <title>Tables and downloads &mdash; Collaboration Documentation  documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/custom.css?v=f5fd91e7" />
@@ -17,8 +18,10 @@
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
-    <link rel="index" title="Index" href="#" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Data inputs and translation layer" href="data_and_translations.html" />
+    <link rel="prev" title="Graph construction and visual semantics" href="graphs.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -41,7 +44,7 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation &amp; Prerequisites</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="installation.html#prerequisites">Prerequisites</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installation.html#environment-setup">Environment setup</a></li>
@@ -94,10 +97,10 @@
 <li class="toctree-l2"><a class="reference internal" href="graphs.html#interaction-focusing-cue-variants">Interaction: focusing cue variants</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="tables.html">Tables and downloads</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="tables.html#edge-details-table-gemini-pairs">Edge details table (Gemini-pairs)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tables.html#cue-slice-tables-shared-vs-unique">Cue slice tables (shared vs unique)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tables.html#downloads">Downloads</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tables and downloads</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#edge-details-table-gemini-pairs">Edge details table (Gemini-pairs)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cue-slice-tables-shared-vs-unique">Cue slice tables (shared vs unique)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#downloads">Downloads</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="data_and_translations.html">Data inputs and translation layer</a><ul>
@@ -137,8 +140,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Index</li>
+      <li class="breadcrumb-item active">Tables and downloads</li>
       <li class="wy-breadcrumbs-aside">
+            <a href="_sources/tables.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -146,17 +150,68 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-
-<h1 id="index">Index</h1>
-
-<div class="genindex-jumpbox">
- 
-</div>
+  <section id="tables-and-downloads">
+<h1>Tables and downloads<a class="headerlink" href="#tables-and-downloads" title="Link to this heading"></a></h1>
+<p>The application provides two table views:</p>
+<ol class="arabic simple">
+<li><p><strong>Edge details</strong>: Gemini-pairs for a clicked edge.</p></li>
+<li><p><strong>Cue slice tables</strong>: shared/unique association rows from cross-linguistic TSVs.</p></li>
+</ol>
+<section id="edge-details-table-gemini-pairs">
+<h2>Edge details table (Gemini-pairs)<a class="headerlink" href="#edge-details-table-gemini-pairs" title="Link to this heading"></a></h2>
+<p>When the user clicks an edge in any panel, <code class="docutils literal notranslate"><span class="pre">view.py:display_gemini</span></code> renders an
+edge-inspection table.</p>
+<p>The table is intentionally designed as an “evidence view”:</p>
+<ul class="simple">
+<li><p>It shows cue and association synset IDs (BN), glosses, and POS when available.</p></li>
+<li><p>It accepts both legacy and DB-shaped Gemini entries via <code class="docutils literal notranslate"><span class="pre">_unpack_side</span></code>.</p></li>
+<li><p>It deduplicates rows so repeated Gemini-pair rows do not overwhelm the reader.</p></li>
+</ul>
+</section>
+<section id="cue-slice-tables-shared-vs-unique">
+<h2>Cue slice tables (shared vs unique)<a class="headerlink" href="#cue-slice-tables-shared-vs-unique" title="Link to this heading"></a></h2>
+<p>Cue slice tables are derived from the precomputed cross-linguistic TSVs rather than
+from the graph structure itself. This ensures:</p>
+<ul class="simple">
+<li><p>reproducibility against the exported analysis tables, and</p></li>
+<li><p>decoupling of visual layout decisions from quantitative tables.</p></li>
+</ul>
+<p>The routing to the correct TSV is determined by the selected language set in
+<code class="docutils literal notranslate"><span class="pre">config.py</span></code> (<code class="docutils literal notranslate"><span class="pre">resolve_csv_for_langs</span></code>).</p>
+<p>Grouping is performed by the <code class="docutils literal notranslate"><span class="pre">status</span></code> column in the TSV:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">shared</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">unique_to_l1</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">unique_to_l2</span></code></p></li>
+<li><p>(and optionally <code class="docutils literal notranslate"><span class="pre">unique_to_l3</span></code> in tri-lingual mode)</p></li>
+</ul>
+<p>Implementation details live in <code class="docutils literal notranslate"><span class="pre">csv_slices.py</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">slice_for_cue</span></code> filters the TSV rows for the selected cue.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">slice_groups_for_cue</span></code> splits by status.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">slice_for_edge</span></code> additionally narrows the cue slice to the clicked edge’s
+association(s), matching on the per-language response columns.</p></li>
+</ul>
+</section>
+<section id="downloads">
+<h2>Downloads<a class="headerlink" href="#downloads" title="Link to this heading"></a></h2>
+<p>Two download buttons export the current slices as CSV:</p>
+<ul class="simple">
+<li><p><strong>Download cue slice (CSV)</strong> uses <code class="docutils literal notranslate"><span class="pre">slice_for_cue</span></code>.</p></li>
+<li><p><strong>Download edge slice (CSV)</strong> uses <code class="docutils literal notranslate"><span class="pre">slice_for_edge</span></code>.</p></li>
+</ul>
+<p>This is implemented in <code class="docutils literal notranslate"><span class="pre">view.py:download_slices</span></code> and guarantees that the exported
+CSV corresponds exactly to what the UI is currently showing.</p>
+</section>
+</section>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="graphs.html" class="btn btn-neutral float-left" title="Graph construction and visual semantics" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="data_and_translations.html" class="btn btn-neutral float-right" title="Data inputs and translation layer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

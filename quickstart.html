@@ -3,9 +3,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Index &mdash; Collaboration Documentation  documentation</title>
+  <title>Quickstart &mdash; Collaboration Documentation  documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/custom.css?v=f5fd91e7" />
@@ -17,8 +18,10 @@
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
-    <link rel="index" title="Index" href="#" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Usage Guide" href="usage.html" />
+    <link rel="prev" title="Data inputs and translation layer" href="data_and_translations.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -41,7 +44,7 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation &amp; Prerequisites</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="installation.html#prerequisites">Prerequisites</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installation.html#environment-setup">Environment setup</a></li>
@@ -107,10 +110,10 @@
 <li class="toctree-l2"><a class="reference internal" href="data_and_translations.html#preprocessing-utilities">Preprocessing utilities</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="quickstart.html#run-the-app">Run the app</a></li>
-<li class="toctree-l2"><a class="reference internal" href="quickstart.html#environment-variables">Environment variables</a></li>
-<li class="toctree-l2"><a class="reference internal" href="quickstart.html#notes-on-expected-behaviour">Notes on expected behaviour</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Quickstart</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#run-the-app">Run the app</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#environment-variables">Environment variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#notes-on-expected-behaviour">Notes on expected behaviour</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Usage Guide</a><ul>
@@ -137,8 +140,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Index</li>
+      <li class="breadcrumb-item active">Quickstart</li>
       <li class="wy-breadcrumbs-aside">
+            <a href="_sources/quickstart.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -146,17 +150,47 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-
-<h1 id="index">Index</h1>
-
-<div class="genindex-jumpbox">
- 
+  <section id="quickstart">
+<h1>Quickstart<a class="headerlink" href="#quickstart" title="Link to this heading"></a></h1>
+<section id="run-the-app">
+<h2>Run the app<a class="headerlink" href="#run-the-app" title="Link to this heading"></a></h2>
+<p>From the <code class="docutils literal notranslate"><span class="pre">swow-dash/</span></code> folder:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>app.py
+</pre></div>
 </div>
+<p>By default the app runs on port <code class="docutils literal notranslate"><span class="pre">8087</span></code>.</p>
+</section>
+<section id="environment-variables">
+<h2>Environment variables<a class="headerlink" href="#environment-variables" title="Link to this heading"></a></h2>
+<p>You can override data locations without changing code:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">SWOW_DATA_DIR</span></code>: base folder for inputs</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DATA_PATH</span></code>: path to <code class="docutils literal notranslate"><span class="pre">partial_dash.json</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CLUSTER_PATH</span></code>: path to the domain cluster JSON</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CSV_ZH_EN</span></code>, <code class="docutils literal notranslate"><span class="pre">CSV_NL_EN</span></code>, <code class="docutils literal notranslate"><span class="pre">CSV_ZH_NL_EN</span></code>: analysis TSVs for tables</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">USE_TRANSLATION_CSV</span></code>: set to <code class="docutils literal notranslate"><span class="pre">0</span></code>/<code class="docutils literal notranslate"><span class="pre">false</span></code> to disable translation CSV usage</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TRANSLATIONS_CSV_PATH</span></code>: path to <code class="docutils literal notranslate"><span class="pre">translations_filled.csv</span></code></p></li>
+</ul>
+</section>
+<section id="notes-on-expected-behaviour">
+<h2>Notes on expected behaviour<a class="headerlink" href="#notes-on-expected-behaviour" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>English is always selected (the UI enforces EN as an anchor language).</p></li>
+<li><p>The Common panel shows associations shared by <em>all</em> selected languages, using the
+translation pivot described in <code class="docutils literal notranslate"><span class="pre">data_and_translations</span></code>.</p></li>
+<li><p>Clicking an edge reveals Gemini-pairs in the Edge details table.</p></li>
+<li><p>Download buttons export the current cue/edge slices.</p></li>
+</ul>
+</section>
+</section>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="data_and_translations.html" class="btn btn-neutral float-left" title="Data inputs and translation layer" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="usage.html" class="btn btn-neutral float-right" title="Usage Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

@@ -3,9 +3,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Index &mdash; Collaboration Documentation  documentation</title>
+  <title>Data inputs and translation layer &mdash; Collaboration Documentation  documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/custom.css?v=f5fd91e7" />
@@ -17,8 +18,10 @@
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
-    <link rel="index" title="Index" href="#" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Quickstart" href="quickstart.html" />
+    <link rel="prev" title="Tables and downloads" href="tables.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -41,7 +44,7 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation &amp; Prerequisites</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="installation.html#prerequisites">Prerequisites</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installation.html#environment-setup">Environment setup</a></li>
@@ -100,11 +103,11 @@
 <li class="toctree-l2"><a class="reference internal" href="tables.html#downloads">Downloads</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="data_and_translations.html">Data inputs and translation layer</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="data_and_translations.html#runtime-json-inputs">Runtime JSON inputs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_and_translations.html#cross-linguistic-analysis-tsvs-tables">Cross-linguistic analysis TSVs (tables)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_and_translations.html#translation-pivot-used-for-common-alignment">Translation pivot used for Common alignment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_and_translations.html#preprocessing-utilities">Preprocessing utilities</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Data inputs and translation layer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#runtime-json-inputs">Runtime JSON inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cross-linguistic-analysis-tsvs-tables">Cross-linguistic analysis TSVs (tables)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#translation-pivot-used-for-common-alignment">Translation pivot used for Common alignment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#preprocessing-utilities">Preprocessing utilities</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a><ul>
@@ -137,8 +140,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Index</li>
+      <li class="breadcrumb-item active">Data inputs and translation layer</li>
       <li class="wy-breadcrumbs-aside">
+            <a href="_sources/data_and_translations.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -146,17 +150,62 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-
-<h1 id="index">Index</h1>
-
-<div class="genindex-jumpbox">
- 
-</div>
+  <section id="data-inputs-and-translation-layer">
+<h1>Data inputs and translation layer<a class="headerlink" href="#data-inputs-and-translation-layer" title="Link to this heading"></a></h1>
+<section id="runtime-json-inputs">
+<h2>Runtime JSON inputs<a class="headerlink" href="#runtime-json-inputs" title="Link to this heading"></a></h2>
+<p>The app loads two JSON files (paths configured in <code class="docutils literal notranslate"><span class="pre">swow-dash/config.py</span></code>):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">partial_dash.json</span></code> (<code class="docutils literal notranslate"><span class="pre">DATA</span></code>): cue → language blocks for graph construction</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">80_cue_word_sense_dict_domain_clusters_input.json</span></code> (<code class="docutils literal notranslate"><span class="pre">DOMAIN_CLUSTERS</span></code>):
+cluster metadata (kept for future extensions)</p></li>
+</ul>
+</section>
+<section id="cross-linguistic-analysis-tsvs-tables">
+<h2>Cross-linguistic analysis TSVs (tables)<a class="headerlink" href="#cross-linguistic-analysis-tsvs-tables" title="Link to this heading"></a></h2>
+<p>Cue slice tables (shared/unique) are read from TSV/CSV outputs produced by the
+cross-linguistic analysis pipeline. These are configured in <code class="docutils literal notranslate"><span class="pre">config.py</span></code> via
+<code class="docutils literal notranslate"><span class="pre">CSV_MAP</span></code> and selected with <code class="docutils literal notranslate"><span class="pre">resolve_csv_for_langs</span></code>.</p>
+</section>
+<section id="translation-pivot-used-for-common-alignment">
+<h2>Translation pivot used for Common alignment<a class="headerlink" href="#translation-pivot-used-for-common-alignment" title="Link to this heading"></a></h2>
+<p>The Common graph aligns associations via an English translation pivot <code class="docutils literal notranslate"><span class="pre">assoc_en</span></code>.</p>
+<p>In your workflow, these translations are generated with <strong>Gemini</strong> (and saved into a
+translations table/CSV that the app can load). At runtime the app reads the minimal
+translations CSV:</p>
+<ul class="simple">
+<li><p>default path: <code class="docutils literal notranslate"><span class="pre">/home/ubuntu/kabir/SWOWCompareViz/data/translations_filled.csv</span></code></p></li>
+<li><p>toggled by: <code class="docutils literal notranslate"><span class="pre">USE_TRANSLATION_CSV</span></code> and <code class="docutils literal notranslate"><span class="pre">TRANSLATIONS_CSV_PATH</span></code> (see <code class="docutils literal notranslate"><span class="pre">graph.py</span></code>)</p></li>
+</ul>
+<p>This file provides per-language mappings:</p>
+<ul class="simple">
+<li><p>cue native → cue English (for labelling)</p></li>
+<li><p>assoc native → assoc English (for alignment and label hints)</p></li>
+</ul>
+<p>The resulting <code class="docutils literal notranslate"><span class="pre">assoc_en</span></code> values are used as the pivot key for Common intersection.</p>
+</section>
+<section id="preprocessing-utilities">
+<h2>Preprocessing utilities<a class="headerlink" href="#preprocessing-utilities" title="Link to this heading"></a></h2>
+<p>Two helper scripts are included to build/complete the translation CSV used by the app:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">make_app_translations_csv.py</span></code>:
+converts a richer translation export into the minimal schema expected by the app.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">export_translations_csv.py</span></code>:
+optionally fills missing translations in batch (useful when some Gemini rows are
+missing), producing a completed <code class="docutils literal notranslate"><span class="pre">translations_filled.csv</span></code>.</p></li>
+</ul>
+<p>These scripts are not required for Dash runtime, but they document how the translation
+layer is produced and maintained.</p>
+</section>
+</section>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="tables.html" class="btn btn-neutral float-left" title="Tables and downloads" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="quickstart.html" class="btn btn-neutral float-right" title="Quickstart" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

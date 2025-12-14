@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>“Cultural Nuances” Dash Application (app.py) &mdash; Collaboration Documentation  documentation</title>
+  <title>Graph construction and visual semantics &mdash; Collaboration Documentation  documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/custom.css?v=f5fd91e7" />
@@ -20,7 +20,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Usage Guide" href="usage.html" />
+    <link rel="next" title="Graph construction and visual semantics" href="graphs.html" />
     <link rel="prev" title="Annotation Module" href="annotations.html" /> 
 </head>
 
@@ -79,28 +79,41 @@
 <li class="toctree-l2"><a class="reference internal" href="annotations.html#notes">Notes</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">“Cultural Nuances” Dash Application (app.py)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#high-level-role">High-level Role</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#minimal-lifecycle">Minimal Lifecycle</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#architecture-module-map">Architecture &amp; Module Map</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#data-control-flow">Data &amp; Control Flow</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#key-responsibilities-per-file">Key Responsibilities (per file)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#app-py-this-file"><code class="docutils literal notranslate"><span class="pre">app.py</span></code> (this file)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#view-py-ui-callbacks"><code class="docutils literal notranslate"><span class="pre">view.py</span></code> (UI &amp; Callbacks)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#graph-py-graph-construction"><code class="docutils literal notranslate"><span class="pre">graph.py</span></code> (Graph Construction)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#ui-py-styling-widgets"><code class="docutils literal notranslate"><span class="pre">ui.py</span></code> (Styling &amp; Widgets)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#utils-py-text-utilities"><code class="docutils literal notranslate"><span class="pre">utils.py</span></code> (Text Utilities)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#config-py-configuration-data"><code class="docutils literal notranslate"><span class="pre">config.py</span></code> (Configuration &amp; Data)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Graph construction and visual semantics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#per-language-graphs">Per-language graphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#deterministic-cue-colouring">Deterministic cue colouring</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#label-policy-and-translation-hints">Label policy and translation hints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#common-graph-definition-translation-aligned-intersection">Common graph definition (translation-aligned intersection)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#two-language-and-three-language-modes">Two-language and three-language modes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#interaction-focusing-cue-variants">Interaction: focusing cue variants</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#run-deploy">Run &amp; Deploy</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#local-development">Local development</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#production-wsgi">Production (WSGI)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="graphs.html">Graph construction and visual semantics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="graphs.html#per-language-graphs">Per-language graphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graphs.html#deterministic-cue-colouring">Deterministic cue colouring</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graphs.html#label-policy-and-translation-hints">Label policy and translation hints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graphs.html#common-graph-definition-translation-aligned-intersection">Common graph definition (translation-aligned intersection)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graphs.html#two-language-and-three-language-modes">Two-language and three-language modes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graphs.html#interaction-focusing-cue-variants">Interaction: focusing cue variants</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#documentation-build-pages-publish">Documentation Build &amp; Pages Publish</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#reproducibility-academic-use">Reproducibility &amp; Academic Use</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#api-reference-autodoc">API Reference (Autodoc)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tables.html">Tables and downloads</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tables.html#edge-details-table-gemini-pairs">Edge details table (Gemini-pairs)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tables.html#cue-slice-tables-shared-vs-unique">Cue slice tables (shared vs unique)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tables.html#downloads">Downloads</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="data_and_translations.html">Data inputs and translation layer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="data_and_translations.html#runtime-json-inputs">Runtime JSON inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_and_translations.html#cross-linguistic-analysis-tsvs-tables">Cross-linguistic analysis TSVs (tables)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_and_translations.html#translation-pivot-used-for-common-alignment">Translation pivot used for Common alignment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_and_translations.html#preprocessing-utilities">Preprocessing utilities</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#run-the-app">Run the app</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#environment-variables">Environment variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#notes-on-expected-behaviour">Notes on expected behaviour</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Usage Guide</a><ul>
@@ -127,7 +140,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">“Cultural Nuances” Dash Application (app.py)</li>
+      <li class="breadcrumb-item active">Graph construction and visual semantics</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/app.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -137,192 +150,83 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="cultural-nuances-dash-application-app-py">
-<span id="app"></span><h1>“Cultural Nuances” Dash Application (app.py)<a class="headerlink" href="#cultural-nuances-dash-application-app-py" title="Link to this heading"></a></h1>
-<p>This page documents the <strong>Dash front-end</strong> used to explore cross-lingual word-association graphs derived from the SWOW enhancement pipeline. The app renders per-language subgraphs, a <strong>shared “Common” panel</strong> (cross-lingual overlaps), and interactive edge tables exposing synset pairs (“Gemini pairs”) with domains and POS.</p>
-<nav class="contents local" id="contents">
+  <section id="graph-construction-and-visual-semantics">
+<h1>Graph construction and visual semantics<a class="headerlink" href="#graph-construction-and-visual-semantics" title="Link to this heading"></a></h1>
+<p>This page describes how the Cytoscape graphs are built and how colours and labels
+are defined.</p>
+<section id="per-language-graphs">
+<h2>Per-language graphs<a class="headerlink" href="#per-language-graphs" title="Link to this heading"></a></h2>
+<p>Per-language graphs are generated in <code class="docutils literal notranslate"><span class="pre">swow-dash/graph.py</span></code> by <code class="docutils literal notranslate"><span class="pre">graph_for_lang</span></code>.
+A key design choice is to model <strong>each native cue variant</strong> as its own cue node for
+ZH/NL (rather than collapsing variants early). This keeps variant structure visible
+and avoids discarding associations.</p>
+<p>Node identifiers use a scoped scheme:</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#high-level-role" id="id1">High-level Role</a></p></li>
-<li><p><a class="reference internal" href="#minimal-lifecycle" id="id2">Minimal Lifecycle</a></p></li>
-<li><p><a class="reference internal" href="#architecture-module-map" id="id3">Architecture &amp; Module Map</a></p></li>
-<li><p><a class="reference internal" href="#data-control-flow" id="id4">Data &amp; Control Flow</a></p></li>
-<li><p><a class="reference internal" href="#key-responsibilities-per-file" id="id5">Key Responsibilities (per file)</a></p>
-<ul>
-<li><p><a class="reference internal" href="#app-py-this-file" id="id6"><code class="docutils literal notranslate"><span class="pre">app.py</span></code> (this file)</a></p></li>
-<li><p><a class="reference internal" href="#view-py-ui-callbacks" id="id7"><code class="docutils literal notranslate"><span class="pre">view.py</span></code> (UI &amp; Callbacks)</a></p></li>
-<li><p><a class="reference internal" href="#graph-py-graph-construction" id="id8"><code class="docutils literal notranslate"><span class="pre">graph.py</span></code> (Graph Construction)</a></p></li>
-<li><p><a class="reference internal" href="#ui-py-styling-widgets" id="id9"><code class="docutils literal notranslate"><span class="pre">ui.py</span></code> (Styling &amp; Widgets)</a></p></li>
-<li><p><a class="reference internal" href="#utils-py-text-utilities" id="id10"><code class="docutils literal notranslate"><span class="pre">utils.py</span></code> (Text Utilities)</a></p></li>
-<li><p><a class="reference internal" href="#config-py-configuration-data" id="id11"><code class="docutils literal notranslate"><span class="pre">config.py</span></code> (Configuration &amp; Data)</a></p></li>
+<li><p>cue nodes:  <code class="docutils literal notranslate"><span class="pre">&quot;{LANG}:{native_cue}&quot;</span></code></p></li>
+<li><p>assoc nodes: <code class="docutils literal notranslate"><span class="pre">&quot;{LANG}:{native_cue}:{bn_or_surface}&quot;</span></code></p></li>
 </ul>
-</li>
-<li><p><a class="reference internal" href="#run-deploy" id="id12">Run &amp; Deploy</a></p>
-<ul>
-<li><p><a class="reference internal" href="#local-development" id="id13">Local development</a></p></li>
-<li><p><a class="reference internal" href="#production-wsgi" id="id14">Production (WSGI)</a></p></li>
-</ul>
-</li>
-<li><p><a class="reference internal" href="#documentation-build-pages-publish" id="id15">Documentation Build &amp; Pages Publish</a></p></li>
-<li><p><a class="reference internal" href="#reproducibility-academic-use" id="id16">Reproducibility &amp; Academic Use</a></p></li>
-<li><p><a class="reference internal" href="#api-reference-autodoc" id="id17">API Reference (Autodoc)</a></p></li>
-</ul>
-</nav>
-<section id="high-level-role">
-<h2><a class="toc-backref" href="#id1" role="doc-backlink">High-level Role</a><a class="headerlink" href="#high-level-role" title="Link to this heading"></a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">app.py</span></code> is the <strong>entrypoint</strong>:</p>
+<p>Associations are added as outgoing edges from cue → assoc, and each edge carries a
+payload including:</p>
 <ul class="simple">
-<li><p>Creates a Dash server (<code class="docutils literal notranslate"><span class="pre">server</span> <span class="pre">=</span> <span class="pre">app.server</span></code> for WSGI hosting).</p></li>
-<li><p>Loads Cytoscape extra layouts.</p></li>
-<li><p>Delegates <strong>UI construction</strong> and <strong>callbacks</strong> to <code class="xref py py-mod docutils literal notranslate"><span class="pre">view</span></code>.</p></li>
-<li><p>Mounts a clean, CDN-hosted CSS baseline (Normalize + Milligram).</p></li>
+<li><p>the language tag,</p></li>
+<li><p>the native cue and assoc surfaces,</p></li>
+<li><p>the Gemini-pairs (for later inspection in the edge table).</p></li>
 </ul>
 </section>
-<section id="minimal-lifecycle">
-<h2><a class="toc-backref" href="#id2" role="doc-backlink">Minimal Lifecycle</a><a class="headerlink" href="#minimal-lifecycle" title="Link to this heading"></a></h2>
-<ol class="arabic simple">
-<li><p><strong>Import UI and callbacks</strong>: <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">view</span> <span class="pre">import</span> <span class="pre">make_layout,</span> <span class="pre">register_callbacks</span></code></p></li>
-<li><p><strong>Instantiate app</strong>: <code class="docutils literal notranslate"><span class="pre">app</span> <span class="pre">=</span> <span class="pre">Dash(...,</span> <span class="pre">suppress_callback_exceptions=True)</span></code></p></li>
-<li><p><strong>Load layouts</strong>: <code class="docutils literal notranslate"><span class="pre">cyto.load_extra_layouts()</span></code></p></li>
-<li><p><strong>Attach layout</strong>: <code class="docutils literal notranslate"><span class="pre">app.layout</span> <span class="pre">=</span> <span class="pre">make_layout()</span></code></p></li>
-<li><p><strong>Register interactivity</strong>: <code class="docutils literal notranslate"><span class="pre">register_callbacks(app)</span></code></p></li>
-<li><p><strong>Expose WSGI</strong>: <code class="docutils literal notranslate"><span class="pre">server</span> <span class="pre">=</span> <span class="pre">app.server</span></code></p></li>
-<li><p><strong>Run locally</strong> (port <code class="docutils literal notranslate"><span class="pre">8085</span></code>)</p></li>
-</ol>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dash</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dash</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">dash_cytoscape</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cyto</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">view</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_layout</span><span class="p">,</span> <span class="n">register_callbacks</span>
-
-<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="o">...</span><span class="p">],</span> <span class="n">suppress_callback_exceptions</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">app</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Cultural Nuances&quot;</span>
-<span class="n">server</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">server</span>
-
-<span class="n">cyto</span><span class="o">.</span><span class="n">load_extra_layouts</span><span class="p">()</span>
-<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">make_layout</span><span class="p">()</span>
-<span class="n">register_callbacks</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">8085</span><span class="p">)</span>
+<section id="deterministic-cue-colouring">
+<h2>Deterministic cue colouring<a class="headerlink" href="#deterministic-cue-colouring" title="Link to this heading"></a></h2>
+<p>Colours are assigned <strong>per cue-variant</strong> (not per language) to support consistent
+cross-panel interpretation.</p>
+<p>In <code class="docutils literal notranslate"><span class="pre">build_graph</span></code> the palette is stabilised by constructing the cue→colour map over
+<strong>all three languages (EN, ZH, NL)</strong> regardless of the user’s selection. This ensures
+that the same cue variant is always rendered with the same colour.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ALL_LANGS</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;EN&quot;</span><span class="p">,</span> <span class="s2">&quot;ZH&quot;</span><span class="p">,</span> <span class="s2">&quot;NL&quot;</span><span class="p">)</span>
+<span class="o">...</span>
+<span class="n">global_cue_keys</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">global_cue_keys</span><span class="p">)</span>
+<span class="n">cue_color_global</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">_PALETTE</span><span class="p">[</span><span class="n">i</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">_PALETTE</span><span class="p">)]</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">global_cue_keys</span><span class="p">)}</span>
 </pre></div>
 </div>
+<p>This is also mirrored in the legend builder in <code class="docutils literal notranslate"><span class="pre">view.py</span></code> (<code class="docutils literal notranslate"><span class="pre">_cue_palette_for_legend</span></code>)
+to ensure the legend and graph colours cannot drift.</p>
 </section>
-<section id="architecture-module-map">
-<h2><a class="toc-backref" href="#id3" role="doc-backlink">Architecture &amp; Module Map</a><a class="headerlink" href="#architecture-module-map" title="Link to this heading"></a></h2>
-<p>The app is deliberately thin; most logic is factored into small, focused modules:</p>
+<section id="label-policy-and-translation-hints">
+<h2>Label policy and translation hints<a class="headerlink" href="#label-policy-and-translation-hints" title="Link to this heading"></a></h2>
+<p>For side panels, the app displays bilingual labels for ZH/NL:</p>
 <ul class="simple">
-<li><p><code class="xref py py-mod docutils literal notranslate"><span class="pre">view</span></code> – Page layout, control panel, <strong>callbacks</strong> (graph updates, edge-detail table).</p></li>
-<li><p><code class="xref py py-mod docutils literal notranslate"><span class="pre">graph</span></code> – Graph construction for <strong>single</strong> and <strong>multi-language</strong> views
-(<code class="docutils literal notranslate"><span class="pre">graph_for_lang</span></code>, <code class="docutils literal notranslate"><span class="pre">build_graph</span></code>).</p></li>
-<li><p><code class="xref py py-mod docutils literal notranslate"><span class="pre">ui</span></code> – Cytoscape stylesheet + convenience constructor (<code class="docutils literal notranslate"><span class="pre">cygraph</span></code>).</p></li>
-<li><p><code class="xref py py-mod docutils literal notranslate"><span class="pre">utils</span></code> – Text normalization, <strong>lemma extraction</strong> and EN translation heuristics.</p></li>
-<li><p><code class="xref py py-mod docutils literal notranslate"><span class="pre">config</span></code> – <strong>Data loading</strong> at import time (SWOW JSON, domain clusters, cue map) and UI constants.</p></li>
+<li><p>cue nodes:  <code class="docutils literal notranslate"><span class="pre">native</span> <span class="pre">(EN</span> <span class="pre">cue)</span></code></p></li>
+<li><p>assoc nodes: <code class="docutils literal notranslate"><span class="pre">native</span> <span class="pre">(EN</span> <span class="pre">translation)</span></code></p></li>
 </ul>
+<p>The English hints come from the translations layer loaded in <code class="docutils literal notranslate"><span class="pre">graph.py</span></code> (see
+<code class="docutils literal notranslate"><span class="pre">swow_dash/data_and_translations</span></code>). EN nodes are shown as plain English.</p>
 </section>
-<section id="data-control-flow">
-<h2><a class="toc-backref" href="#id4" role="doc-backlink">Data &amp; Control Flow</a><a class="headerlink" href="#data-control-flow" title="Link to this heading"></a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">config</span></code> (loads once) → <code class="docutils literal notranslate"><span class="pre">graph</span></code> (builds nodes/edges) → <code class="docutils literal notranslate"><span class="pre">view</span></code> (turns them into Cytoscape elements via <code class="docutils literal notranslate"><span class="pre">ui.cygraph</span></code>) → <strong>Dash</strong> renders canvases and interactive tables.</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>config  ──►  graph  ──►  view  ──►  ui  ──► dash_cytoscape
-  ▲                        │
-  └────────────── utils ◄──┘
-</pre></div>
-</div>
-</section>
-<section id="key-responsibilities-per-file">
-<h2><a class="toc-backref" href="#id5" role="doc-backlink">Key Responsibilities (per file)</a><a class="headerlink" href="#key-responsibilities-per-file" title="Link to this heading"></a></h2>
-<section id="app-py-this-file">
-<h3><a class="toc-backref" href="#id6" role="doc-backlink"><code class="docutils literal notranslate"><span class="pre">app.py</span></code> (this file)</a><a class="headerlink" href="#app-py-this-file" title="Link to this heading"></a></h3>
+<section id="common-graph-definition-translation-aligned-intersection">
+<h2>Common graph definition (translation-aligned intersection)<a class="headerlink" href="#common-graph-definition-translation-aligned-intersection" title="Link to this heading"></a></h2>
+<p>The Common panel is constructed in <code class="docutils literal notranslate"><span class="pre">swow-dash/graph.py</span></code> by aligning associations
+through a translation pivot:</p>
 <ul class="simple">
-<li><p>Entrypoint, WSGI server export.</p></li>
-<li><p>Title, CSS, and Cytoscape layout registration.</p></li>
-<li><p>No data logic; keeps concerns separated.</p></li>
+<li><p>For each language edge, the app retrieves an English association lemma <code class="docutils literal notranslate"><span class="pre">assoc_en</span></code>.</p></li>
+<li><p>These English keys are normalised (lowercased, whitespace collapsed).</p></li>
+<li><p>The <strong>Common set</strong> is the intersection of English keys across all selected languages.</p></li>
 </ul>
+<p>Conceptually, this treats <code class="docutils literal notranslate"><span class="pre">assoc_en</span></code> as a pivot representation for alignment, while
+still preserving the original native association surfaces in the node label.</p>
+<p>Gemini-pairs are retained on the edge payload as interpretability evidence, but they
+do not define the Common intersection.</p>
 </section>
-<section id="view-py-ui-callbacks">
-<h3><a class="toc-backref" href="#id7" role="doc-backlink"><code class="docutils literal notranslate"><span class="pre">view.py</span></code> (UI &amp; Callbacks)</a><a class="headerlink" href="#view-py-ui-callbacks" title="Link to this heading"></a></h3>
+<section id="two-language-and-three-language-modes">
+<h2>Two-language and three-language modes<a class="headerlink" href="#two-language-and-three-language-modes" title="Link to this heading"></a></h2>
+<p>Two-language mode (EN+ZH or EN+NL) anchors Common cue bubbles using the non-English
+language when available; three-language mode uses a single combined cue bubble
+(<code class="docutils literal notranslate"><span class="pre">TRI:CUE:...</span></code>) whose label concatenates EN / ZH / NL representatives for the cue.</p>
+</section>
+<section id="interaction-focusing-cue-variants">
+<h2>Interaction: focusing cue variants<a class="headerlink" href="#interaction-focusing-cue-variants" title="Link to this heading"></a></h2>
+<p>The focus/highlight behaviour is implemented in <code class="docutils literal notranslate"><span class="pre">view.py</span></code> (<code class="docutils literal notranslate"><span class="pre">focus_on_cue</span></code>):</p>
 <ul class="simple">
-<li><p><strong>Layout</strong>: header card, controls (cue dropdown, language checklist), three-panel graph grid, edge-detail table.</p></li>
-<li><p><strong>Callbacks</strong>:
-- <code class="docutils literal notranslate"><span class="pre">update_graphs(cue,</span> <span class="pre">langs)</span></code> → renders per-language panels + <strong>Common</strong> panel and a <strong>domain legend</strong>.
-- <code class="docutils literal notranslate"><span class="pre">display_gemini(tapEdgeData)</span></code> → deduplicates and formats the Gemini-pair table with POS, gloss, and domain.</p></li>
+<li><p>Clicking a ZH/NL cue node fades the panel and highlights the cue + outgoing targets.</p></li>
+<li><p>The callback also attempts to highlight the corresponding anchor cue in the Common
+panel (when present) using the consistent ID scheme.</p></li>
 </ul>
-</section>
-<section id="graph-py-graph-construction">
-<h3><a class="toc-backref" href="#id8" role="doc-backlink"><code class="docutils literal notranslate"><span class="pre">graph.py</span></code> (Graph Construction)</a><a class="headerlink" href="#graph-py-graph-construction" title="Link to this heading"></a></h3>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">graph_for_lang</span></code>: builds <strong>native-label</strong> node set + edges for a language; clusters cue senses to collaborator-defined domains.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">build_graph</span></code>: composes <strong>Common</strong> overlaps and per-language <strong>Unique</strong> panels using:
-1) <strong>BN-ID</strong> matches, 2) <strong>lemma-set</strong> overlaps, 3) <strong>attachment of leftovers</strong>.</p></li>
-</ul>
-</section>
-<section id="ui-py-styling-widgets">
-<h3><a class="toc-backref" href="#id9" role="doc-backlink"><code class="docutils literal notranslate"><span class="pre">ui.py</span></code> (Styling &amp; Widgets)</a><a class="headerlink" href="#ui-py-styling-widgets" title="Link to this heading"></a></h3>
-<ul class="simple">
-<li><p>Central Cytoscape stylesheet (node/edge classes: <code class="docutils literal notranslate"><span class="pre">.cue</span></code>, <code class="docutils literal notranslate"><span class="pre">.common</span></code>, <code class="docutils literal notranslate"><span class="pre">.EN</span></code> <code class="docutils literal notranslate"><span class="pre">.ZH</span></code> <code class="docutils literal notranslate"><span class="pre">.NL</span></code>).</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">cygraph</span></code> helper that sets layout (<code class="docutils literal notranslate"><span class="pre">cose-bilkent</span></code>), zoom bounds, container styling.</p></li>
-</ul>
-</section>
-<section id="utils-py-text-utilities">
-<h3><a class="toc-backref" href="#id10" role="doc-backlink"><code class="docutils literal notranslate"><span class="pre">utils.py</span></code> (Text Utilities)</a><a class="headerlink" href="#utils-py-text-utilities" title="Link to this heading"></a></h3>
-<ul class="simple">
-<li><p>English lemma extraction from translation tags (<code class="docutils literal notranslate"><span class="pre">WN:EN:...</span></code>).</p></li>
-<li><p>Heuristics to pick best EN hints for <strong>ZH/NL</strong> cue and association labels.</p></li>
-<li><p>NFKC normalization and simple stemming for EN/NL.</p></li>
-</ul>
-</section>
-<section id="config-py-configuration-data">
-<h3><a class="toc-backref" href="#id11" role="doc-backlink"><code class="docutils literal notranslate"><span class="pre">config.py</span></code> (Configuration &amp; Data)</a><a class="headerlink" href="#config-py-configuration-data" title="Link to this heading"></a></h3>
-<ul class="simple">
-<li><p>Absolute paths to input JSON/YAML (replace with env-vars for portability in production).</p></li>
-<li><p>Loads:
-- <code class="docutils literal notranslate"><span class="pre">DATA</span></code> (enhanced SWOW JSON),
-- <code class="docutils literal notranslate"><span class="pre">DOMAIN_CLUSTERS</span></code> (cluster → domain labels),
-- <code class="docutils literal notranslate"><span class="pre">CUE_MAP</span></code> + <code class="docutils literal notranslate"><span class="pre">CUE_OPTIONS</span></code> (for the dropdown).</p></li>
-<li><p>UI constants: palette, language options.</p></li>
-</ul>
-</section>
-</section>
-<section id="run-deploy">
-<h2><a class="toc-backref" href="#id12" role="doc-backlink">Run &amp; Deploy</a><a class="headerlink" href="#run-deploy" title="Link to this heading"></a></h2>
-<section id="local-development">
-<h3><a class="toc-backref" href="#id13" role="doc-backlink">Local development</a><a class="headerlink" href="#local-development" title="Link to this heading"></a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># install</span>
-poetry<span class="w"> </span>install
-<span class="c1"># run</span>
-poetry<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>app.py
-<span class="c1"># open</span>
-xdg-open<span class="w"> </span>http://127.0.0.1:8085/<span class="w">  </span><span class="c1"># or open your browser manually</span>
-</pre></div>
-</div>
-</section>
-<section id="production-wsgi">
-<h3><a class="toc-backref" href="#id14" role="doc-backlink">Production (WSGI)</a><a class="headerlink" href="#production-wsgi" title="Link to this heading"></a></h3>
-<p>Expose <code class="docutils literal notranslate"><span class="pre">server</span></code> to a WSGI server (e.g., Gunicorn or Waitress):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>poetry<span class="w"> </span>run<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>gunicorn
-poetry<span class="w"> </span>run<span class="w"> </span>gunicorn<span class="w"> </span>app:server<span class="w"> </span>--bind<span class="w"> </span><span class="m">0</span>.0.0.0:8085<span class="w"> </span>--workers<span class="w"> </span><span class="m">2</span>
-</pre></div>
-</div>
-</section>
-</section>
-<section id="documentation-build-pages-publish">
-<h2><a class="toc-backref" href="#id15" role="doc-backlink">Documentation Build &amp; Pages Publish</a><a class="headerlink" href="#documentation-build-pages-publish" title="Link to this heading"></a></h2>
-<p><strong>Build HTML</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>poetry<span class="w"> </span>run<span class="w"> </span>sphinx-build<span class="w"> </span>-b<span class="w"> </span>html<span class="w"> </span>docs<span class="w"> </span>docs/_build/html
-</pre></div>
-</div>
-<p><strong>Quick publish via ghp-import</strong> (manual Pages deploy to <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code>):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>poetry<span class="w"> </span>run<span class="w"> </span>ghp-import<span class="w"> </span>-n<span class="w"> </span>-p<span class="w"> </span>-f<span class="w"> </span>docs/_build/html<span class="w"> </span>-b<span class="w"> </span>gh-pages
-<span class="c1"># then (if needed)</span>
-git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>gh-pages
-</pre></div>
-</div>
-<p><strong>CI alternative (recommended):</strong> use a GitHub Actions workflow that builds Sphinx
-and deploys to GitHub Pages on push. See <code class="docutils literal notranslate"><span class="pre">.github/workflows/docs.yml</span></code>.</p>
-</section>
-<section id="reproducibility-academic-use">
-<h2><a class="toc-backref" href="#id16" role="doc-backlink">Reproducibility &amp; Academic Use</a><a class="headerlink" href="#reproducibility-academic-use" title="Link to this heading"></a></h2>
-<p>The front-end isolates <strong>visual inference</strong> from <strong>data enhancement</strong>. All cross-lingual overlaps shown in the “Common” panel are derived algorithmically (BN-ID intersections, lemma overlaps, and conservative attachment of leftovers). This separation facilitates <strong>replication</strong> and <strong>ablation</strong> (swap ranking heuristics, change clustering, or toggle EN-hint display) without rewriting the UI.</p>
-</section>
-<section id="api-reference-autodoc">
-<h2><a class="toc-backref" href="#id17" role="doc-backlink">API Reference (Autodoc)</a><a class="headerlink" href="#api-reference-autodoc" title="Link to this heading"></a></h2>
 </section>
 </section>
 
@@ -331,7 +235,7 @@ and deploys to GitHub Pages on push. See <code class="docutils literal notransla
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="annotations.html" class="btn btn-neutral float-left" title="Annotation Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="usage.html" class="btn btn-neutral float-right" title="Usage Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="graphs.html" class="btn btn-neutral float-right" title="Graph construction and visual semantics" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

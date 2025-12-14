@@ -3,9 +3,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Index &mdash; Collaboration Documentation  documentation</title>
+  <title>Graph construction and visual semantics &mdash; Collaboration Documentation  documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/custom.css?v=f5fd91e7" />
@@ -17,8 +18,10 @@
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
-    <link rel="index" title="Index" href="#" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tables and downloads" href="tables.html" />
+    <link rel="prev" title="Graph construction and visual semantics" href="app.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -41,7 +44,7 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation &amp; Prerequisites</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="installation.html#prerequisites">Prerequisites</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installation.html#environment-setup">Environment setup</a></li>
@@ -85,13 +88,13 @@
 <li class="toctree-l2"><a class="reference internal" href="app.html#interaction-focusing-cue-variants">Interaction: focusing cue variants</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="graphs.html">Graph construction and visual semantics</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="graphs.html#per-language-graphs">Per-language graphs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="graphs.html#deterministic-cue-colouring">Deterministic cue colouring</a></li>
-<li class="toctree-l2"><a class="reference internal" href="graphs.html#label-policy-and-translation-hints">Label policy and translation hints</a></li>
-<li class="toctree-l2"><a class="reference internal" href="graphs.html#common-graph-definition-translation-aligned-intersection">Common graph definition (translation-aligned intersection)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="graphs.html#two-language-and-three-language-modes">Two-language and three-language modes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="graphs.html#interaction-focusing-cue-variants">Interaction: focusing cue variants</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Graph construction and visual semantics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#per-language-graphs">Per-language graphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#deterministic-cue-colouring">Deterministic cue colouring</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#label-policy-and-translation-hints">Label policy and translation hints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#common-graph-definition-translation-aligned-intersection">Common graph definition (translation-aligned intersection)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#two-language-and-three-language-modes">Two-language and three-language modes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#interaction-focusing-cue-variants">Interaction: focusing cue variants</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tables.html">Tables and downloads</a><ul>
@@ -137,8 +140,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Index</li>
+      <li class="breadcrumb-item active">Graph construction and visual semantics</li>
       <li class="wy-breadcrumbs-aside">
+            <a href="_sources/graphs.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -146,17 +150,93 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-
-<h1 id="index">Index</h1>
-
-<div class="genindex-jumpbox">
- 
+  <section id="graph-construction-and-visual-semantics">
+<h1>Graph construction and visual semantics<a class="headerlink" href="#graph-construction-and-visual-semantics" title="Link to this heading"></a></h1>
+<p>This page describes how the Cytoscape graphs are built and how colours and labels
+are defined.</p>
+<section id="per-language-graphs">
+<h2>Per-language graphs<a class="headerlink" href="#per-language-graphs" title="Link to this heading"></a></h2>
+<p>Per-language graphs are generated in <code class="docutils literal notranslate"><span class="pre">swow-dash/graph.py</span></code> by <code class="docutils literal notranslate"><span class="pre">graph_for_lang</span></code>.
+A key design choice is to model <strong>each native cue variant</strong> as its own cue node for
+ZH/NL (rather than collapsing variants early). This keeps variant structure visible
+and avoids discarding associations.</p>
+<p>Node identifiers use a scoped scheme:</p>
+<ul class="simple">
+<li><p>cue nodes:  <code class="docutils literal notranslate"><span class="pre">&quot;{LANG}:{native_cue}&quot;</span></code></p></li>
+<li><p>assoc nodes: <code class="docutils literal notranslate"><span class="pre">&quot;{LANG}:{native_cue}:{bn_or_surface}&quot;</span></code></p></li>
+</ul>
+<p>Associations are added as outgoing edges from cue → assoc, and each edge carries a
+payload including:</p>
+<ul class="simple">
+<li><p>the language tag,</p></li>
+<li><p>the native cue and assoc surfaces,</p></li>
+<li><p>the Gemini-pairs (for later inspection in the edge table).</p></li>
+</ul>
+</section>
+<section id="deterministic-cue-colouring">
+<h2>Deterministic cue colouring<a class="headerlink" href="#deterministic-cue-colouring" title="Link to this heading"></a></h2>
+<p>Colours are assigned <strong>per cue-variant</strong> (not per language) to support consistent
+cross-panel interpretation.</p>
+<p>In <code class="docutils literal notranslate"><span class="pre">build_graph</span></code> the palette is stabilised by constructing the cue→colour map over
+<strong>all three languages (EN, ZH, NL)</strong> regardless of the user’s selection. This ensures
+that the same cue variant is always rendered with the same colour.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ALL_LANGS</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;EN&quot;</span><span class="p">,</span> <span class="s2">&quot;ZH&quot;</span><span class="p">,</span> <span class="s2">&quot;NL&quot;</span><span class="p">)</span>
+<span class="o">...</span>
+<span class="n">global_cue_keys</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">global_cue_keys</span><span class="p">)</span>
+<span class="n">cue_color_global</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">_PALETTE</span><span class="p">[</span><span class="n">i</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">_PALETTE</span><span class="p">)]</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">global_cue_keys</span><span class="p">)}</span>
+</pre></div>
 </div>
+<p>This is also mirrored in the legend builder in <code class="docutils literal notranslate"><span class="pre">view.py</span></code> (<code class="docutils literal notranslate"><span class="pre">_cue_palette_for_legend</span></code>)
+to ensure the legend and graph colours cannot drift.</p>
+</section>
+<section id="label-policy-and-translation-hints">
+<h2>Label policy and translation hints<a class="headerlink" href="#label-policy-and-translation-hints" title="Link to this heading"></a></h2>
+<p>For side panels, the app displays bilingual labels for ZH/NL:</p>
+<ul class="simple">
+<li><p>cue nodes:  <code class="docutils literal notranslate"><span class="pre">native</span> <span class="pre">(EN</span> <span class="pre">cue)</span></code></p></li>
+<li><p>assoc nodes: <code class="docutils literal notranslate"><span class="pre">native</span> <span class="pre">(EN</span> <span class="pre">translation)</span></code></p></li>
+</ul>
+<p>The English hints come from the translations layer loaded in <code class="docutils literal notranslate"><span class="pre">graph.py</span></code> (see
+<code class="docutils literal notranslate"><span class="pre">swow_dash/data_and_translations</span></code>). EN nodes are shown as plain English.</p>
+</section>
+<section id="common-graph-definition-translation-aligned-intersection">
+<h2>Common graph definition (translation-aligned intersection)<a class="headerlink" href="#common-graph-definition-translation-aligned-intersection" title="Link to this heading"></a></h2>
+<p>The Common panel is constructed in <code class="docutils literal notranslate"><span class="pre">swow-dash/graph.py</span></code> by aligning associations
+through a translation pivot:</p>
+<ul class="simple">
+<li><p>For each language edge, the app retrieves an English association lemma <code class="docutils literal notranslate"><span class="pre">assoc_en</span></code>.</p></li>
+<li><p>These English keys are normalised (lowercased, whitespace collapsed).</p></li>
+<li><p>The <strong>Common set</strong> is the intersection of English keys across all selected languages.</p></li>
+</ul>
+<p>Conceptually, this treats <code class="docutils literal notranslate"><span class="pre">assoc_en</span></code> as a pivot representation for alignment, while
+still preserving the original native association surfaces in the node label.</p>
+<p>Gemini-pairs are retained on the edge payload as interpretability evidence, but they
+do not define the Common intersection.</p>
+</section>
+<section id="two-language-and-three-language-modes">
+<h2>Two-language and three-language modes<a class="headerlink" href="#two-language-and-three-language-modes" title="Link to this heading"></a></h2>
+<p>Two-language mode (EN+ZH or EN+NL) anchors Common cue bubbles using the non-English
+language when available; three-language mode uses a single combined cue bubble
+(<code class="docutils literal notranslate"><span class="pre">TRI:CUE:...</span></code>) whose label concatenates EN / ZH / NL representatives for the cue.</p>
+</section>
+<section id="interaction-focusing-cue-variants">
+<h2>Interaction: focusing cue variants<a class="headerlink" href="#interaction-focusing-cue-variants" title="Link to this heading"></a></h2>
+<p>The focus/highlight behaviour is implemented in <code class="docutils literal notranslate"><span class="pre">view.py</span></code> (<code class="docutils literal notranslate"><span class="pre">focus_on_cue</span></code>):</p>
+<ul class="simple">
+<li><p>Clicking a ZH/NL cue node fades the panel and highlights the cue + outgoing targets.</p></li>
+<li><p>The callback also attempts to highlight the corresponding anchor cue in the Common
+panel (when present) using the consistent ID scheme.</p></li>
+</ul>
+</section>
+</section>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="app.html" class="btn btn-neutral float-left" title="Graph construction and visual semantics" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tables.html" class="btn btn-neutral float-right" title="Tables and downloads" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 
