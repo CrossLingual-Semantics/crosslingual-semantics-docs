@@ -4,6 +4,33 @@ Graph construction and visual semantics
 This page describes how the Cytoscape graphs are built and how colours and labels
 are defined.
 
+High-level overview diagrams
+----------------------------
+
+The two diagrams below summarise (i) how **Common vs Unique** associations are
+formed using a translation pivot, and (ii) how the explorer behaves at runtime.
+
+.. figure:: png/swow_dash_common_unique.png
+   :alt: Flowchart showing how Common and Unique associations are formed via a Gemini translation pivot.
+   :width: 95%
+   :align: center
+
+   **Common vs Unique formation (translation-aligned intersection).**
+   Non-English associations are mapped to concise English lemmas (Gemini), normalised,
+   and grouped by the resulting English key. **Common** associations are those whose
+   English keys appear across all selected languages; **Unique** associations appear
+   only in one language relative to the others.
+
+.. figure:: png/swow_dash_runtime_flow.png
+   :alt: Flowchart showing the runtime flow of the SWOW Dash explorer from user input to graphs and tables.
+   :width: 95%
+   :align: center
+
+   **Runtime flow of the explorer.**
+   User selections (cue + languages) trigger graph construction and rendering.
+   Edge clicks surface interpretability evidence (Gemini-pairs) and drive the
+   corresponding table slices.
+
 Per-language graphs
 -------------------
 

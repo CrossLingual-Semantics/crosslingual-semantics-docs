@@ -80,6 +80,7 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Graph construction and visual semantics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#high-level-overview-diagrams">High-level overview diagrams</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#per-language-graphs">Per-language graphs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#deterministic-cue-colouring">Deterministic cue colouring</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#label-policy-and-translation-hints">Label policy and translation hints</a></li>
@@ -154,6 +155,32 @@
 <h1>Graph construction and visual semantics<a class="headerlink" href="#graph-construction-and-visual-semantics" title="Link to this heading"></a></h1>
 <p>This page describes how the Cytoscape graphs are built and how colours and labels
 are defined.</p>
+<section id="high-level-overview-diagrams">
+<h2>High-level overview diagrams<a class="headerlink" href="#high-level-overview-diagrams" title="Link to this heading"></a></h2>
+<p>The two diagrams below summarise (i) how <strong>Common vs Unique</strong> associations are
+formed using a translation pivot, and (ii) how the explorer behaves at runtime.</p>
+<figure class="align-center" id="id1">
+<a class="reference internal image-reference" href="_images/swow_dash_common_unique.png"><img alt="Flowchart showing how Common and Unique associations are formed via a Gemini translation pivot." src="_images/swow_dash_common_unique.png" style="width: 95%;" />
+</a>
+<figcaption>
+<p><span class="caption-text"><strong>Common vs Unique formation (translation-aligned intersection).</strong>
+Non-English associations are mapped to concise English lemmas (Gemini), normalised,
+and grouped by the resulting English key. <strong>Common</strong> associations are those whose
+English keys appear across all selected languages; <strong>Unique</strong> associations appear
+only in one language relative to the others.</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id2">
+<a class="reference internal image-reference" href="_images/swow_dash_runtime_flow.png"><img alt="Flowchart showing the runtime flow of the SWOW Dash explorer from user input to graphs and tables." src="_images/swow_dash_runtime_flow.png" style="width: 95%;" />
+</a>
+<figcaption>
+<p><span class="caption-text"><strong>Runtime flow of the explorer.</strong>
+User selections (cue + languages) trigger graph construction and rendering.
+Edge clicks surface interpretability evidence (Gemini-pairs) and drive the
+corresponding table slices.</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
 <section id="per-language-graphs">
 <h2>Per-language graphs<a class="headerlink" href="#per-language-graphs" title="Link to this heading"></a></h2>
 <p>Per-language graphs are generated in <code class="docutils literal notranslate"><span class="pre">swow-dash/graph.py</span></code> by <code class="docutils literal notranslate"><span class="pre">graph_for_lang</span></code>.
