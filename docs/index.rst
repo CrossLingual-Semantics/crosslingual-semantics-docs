@@ -18,5 +18,9 @@ Welcome to the **SWOW Enhancement Pipeline** documentation. This guide will walk
    enhancer
    annotations
    app
+   graphs
+   tables
+   data_and_translations
+   quickstart
    usage
 
